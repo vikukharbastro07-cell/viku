@@ -1712,6 +1712,7 @@ export default function HoroscopePage() {
                             <TableHead className="text-xs">Nak Lord</TableHead>
                             <TableHead className="text-xs">Sub Lord</TableHead>
                             <TableHead className="text-xs">Natal H</TableHead>
+                            <TableHead className="text-xs">Bhava H</TableHead>
                             <TableHead className="text-xs">R</TableHead>
                           </TableRow>
                         </TableHeader>
@@ -1731,6 +1732,7 @@ export default function HoroscopePage() {
                               <TableCell>{p.nakshatraLord}</TableCell>
                               <TableCell>{p.subLord}</TableCell>
                               <TableCell>{p.natalHouse}</TableCell>
+                              <TableCell>{p.bhavaHouse}</TableCell>
                               <TableCell>{p.retrograde ? "R" : ""}</TableCell>
                             </TableRow>
                           ))}

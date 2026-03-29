@@ -82,9 +82,14 @@ function calcNutation(T: number): { dPsi: number; dEps: number } {
 // KP Old ayanamsa: fixed constant 23.6485° (KP Old as per user specification)
 // KP New ayanamsa: Newcomb formula from epoch year 2000.
 function getAyanamsa(T: number, type: AyanamsaType): number {
-  if (type === "kp-old") return 23.6485; // KP Old fixed constant as per user spec
-  // KP New: calibrated to give 23.6485° for 28 Mar 2026 (user-verified value)
+  // KP Old: date-varying formula anchored at 23.6485° for 2026
+  // KP Old precession rate: ~20"/year (calibrated from reference data: 23.6485° for 2026, ~23.487° for 1997)
+  // This ensures correct ayanamsa for any birth year (1900–2100+)
   const calYear = 2000 + T * 100;
+  if (type === "kp-old") {
+    return 23.6485 + (calYear - 2026.24) * (20.05 / 3600);
+  }
+  // KP New
   return 23.2821 + (calYear - 2000) * (50.2388475 / 3600);
 }
 
